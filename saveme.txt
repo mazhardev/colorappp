@@ -1,0 +1,41 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const uuid = require('uuid/v4');
+
+const app = express();
+
+app.use(bodyParser.json());
+
+// CORS Headers => Required for cross-origin/ cross-server communication
+app.use((req, res, next) => 
+{
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  );
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, PATCH, DELETE, OPTIONS'
+  );
+  next();
+});
+
+app.get('/', (req,res( => res.send('Hello World'));
+
+app.get('/addcolor', (req, res, next) => 
+{
+  res.status(200).json({ greeting: 'hello from addcolor endpoint' });
+});
+
+app.get('/login', (req, res, next) => 
+{
+  res.status(200).json({ greeting: 'hello from login endpoint' });
+});
+
+app.get('/searchcolors', (req, res, next) => 
+{
+  res.status(200).json({ greeting: 'hello from searchcolors endpoint' });
+});
+
+app.listen(5000); // start Node + Express server on port 5000
